@@ -30,7 +30,7 @@ public class ProductoController {
     }
 
     @PostMapping("/{id}/actualizarProducto")
-    public ResponseEntity<String> actualizarProducto(@PathVariable Integer id, Producto producto){
+    public ResponseEntity<String> actualizarProducto(@PathVariable Integer id, @RequestBody Producto producto){
         return ps.actualizarProducto(id,producto);
 
     }
