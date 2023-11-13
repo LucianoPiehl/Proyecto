@@ -1,0 +1,67 @@
+<head><link rel="stylesheet" href="user.component.css"></head>
+<table>
+    <thead>
+        <tr>
+            <th> ID </th>
+            <th> Name </th>
+            <th> Nickname </th>
+            <th> Password </th>
+            <th colspan="2"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of userList">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.nickName}}</td>
+            <td>{{user.password}}</td>
+            <td> <button (click)="viewUser(user, ver)">View</button> </td>
+            <td> <button (click)="deleteUser(user.id)">Delete</button> </td>
+        </tr>
+    </tbody>
+
+</table>
+<form [formGroup]="userForm">
+    <br>
+    <label>NAME</label>
+    <input class="form-control" formControlName="name" />
+    <p style="color: red" *ngIf="name.touched && name.errors?.required">campo obligatorio</p><br>
+    <br>
+    <label>NICKNAME</label>
+    <input class="form-control" formControlName="nickname" />
+    <p style="color: red" *ngIf="nickname.touched && nickname.errors?.required">campo obligatorio</p><br>
+    <br>
+    <label>PASSWORD</label>
+    <input class="form-control" formControlName="password" />
+    <p style="color: red" *ngIf="password.touched && password.errors?.required">campo obligatorio</p><br>
+    <br>
+    <!--.target.value-->
+    <select (change)="assignProduct($event)" class="form-control" formControlName="productList" multiple>
+        <option *ngFor="let product of productList2" [value]="product.id">{{product.name}}</option>
+    </select>
+    
+    <div style="text-align: center" colspan="2"><button (click)="insertUser()">ADD</button></div>
+</form>
+
+<ng-template #ver let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">View User</h5>
+        <button class="close" aria-label="Close" (click)="modal.dismiss()"><span
+                aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+        <label> ID </label>
+        <input class="form-control" [(ngModel)]="id2" readonly /><br>
+        <label> NAME </label>
+        <input class="form-control" [(ngModel)]="name2" ngbAutofocus /><br>
+        <label> NICKNAME </label>
+        <input class="form-control" [(ngModel)]="nickname2"/><br>
+        <label> PASSWORD </label>
+        <input class="form-control" [(ngModel)]="password2"/><br>
+      
+        <!--AGREGAR LOS OTROS CAMPOS-->
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" (click)="modal.close()">Update User</button>
+    </div>
+</ng-template>  
