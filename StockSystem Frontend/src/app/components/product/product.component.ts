@@ -107,9 +107,3 @@ export class ProductComponent implements OnInit {
   }
 }
 
-    //   this.userService.setProduct(this.user2, response).subscribe(() => {
-    //     location.reload()
-    //   }, error => {
-    //     console.log(error)
-    //   })
-    // }
